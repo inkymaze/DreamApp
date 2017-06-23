@@ -27,10 +27,11 @@ end
 
 feature "logging in" do
   before(:each) do
-    visit new_user_url
+    User.create(username: "testing_username", password: "safasfsa")
+    visit new_session_url
     fill_in 'username', with: "testing_username"
     fill_in 'password', with: "safasfsa"
-    save_and_open_page
+
     click_on 'Login'
   end
 
@@ -48,11 +49,12 @@ feature "logging out" do
   end
 
   scenario "doesn't show username on the homepage after logout" do
+    User.create(username: "testing_username", password: "safasfsa")
     visit new_session_url
     fill_in 'username', with: 'testing_username'
     fill_in 'password', with: 'safasfsa'
     click_on 'Login'
-    click_on 'Logout'
+    click_button 'Logout'
     expect(page).not_to have_content 'testing_username'
   end
 
