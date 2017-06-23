@@ -29,7 +29,12 @@ class User < ApplicationRecord
     user = User.find_by_username(username)
     return nil if user.nil?
     user.is_password?(password) ? user : nil
+  end
 
+  def reset_session_token!
+    self.session_token = SecureRandom.urlsafe_base64
+    self.save!
+    self.session_token
   end
 
   def is_password?(password)

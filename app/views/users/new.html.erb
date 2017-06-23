@@ -1,2 +1,16 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+
+<p>New user</p>
+
+<form action="<%= users_url %>" method="post">
+
+  <label for="username">username</label>
+  <input type="text" name="user[username]" id="username" >
+
+  <label for="password">password</label>
+  <input type="text" name="user[password]" id="password">
+
+  <%= button_to "Create User", users_url, method: :post %>
+
+</form>

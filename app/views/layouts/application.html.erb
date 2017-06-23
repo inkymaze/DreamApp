@@ -7,8 +7,19 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+    <header>
+      <% if current_user %>
+        <%= current_user.username %>
+        <%= button_to 'Logout', session_url, method: :delete %>
 
+      <% else %>
+        <%= link_to 'New User', new_user_url %>
+        <%= link_to 'Login', new_session_url %>
+      <% end %>
+
+    </header>
   <body>
+
     <%= yield %>
   </body>
 </html>

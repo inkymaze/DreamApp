@@ -37,11 +37,24 @@ RSpec.describe User, type: :model do
 
   describe '#reset_session_token' do
     it 'reset the user session token' do
+      old_session_token = user.session_token
+      user.reset_session_token!
+      expect(user.session_token).not_to eq(old_session_token)
 
     end
   end
 
-  describe '#is_password?'
+  describe '#is_password?' do
+    context 'if correct password' do
+      it 'it returns true' do
+        expect(user.is_password?("password")).to be true
+      end
+    end
 
-  describe '#password='
+    context 'if incorrect password'do
+      it 'it returns false' do
+        expect(user.is_password?("bad_password")).to be false
+      end
+    end
+  end
 end
