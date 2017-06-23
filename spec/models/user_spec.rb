@@ -22,29 +22,26 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:password).is_at_least(6) }
   end
 
-  describe 'associations' do
-
-  end
+  describe 'associations'
 
   describe '::find_by_credentials' do
+    before { user.save! }
     it 'should return user if credentials exists' do
       expect(User.find_by_credentials("someusername", "password")).to eq(user)
     end
 
     it 'should return nil if credentials does not exist' do
       expect(User.find_by_credentials("wrong_someusername", "wrong_password")).to be nil
-    end 
+    end
   end
 
   describe '#reset_session_token' do
+    it 'reset the user session token' do
 
+    end
   end
 
-  describe '#is_password?' do
+  describe '#is_password?'
 
-  end
-
-  describe '#password=' do
-
-  end
+  describe '#password='
 end
